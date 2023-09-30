@@ -16,16 +16,28 @@ then
 fi
 
 
-gcloud auth login
-# gcloud auth application-default login --no-launch-browser
+# Setup gcs-fuse repo
+export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
+
+## Update install wget 
+sudo apt update && sudo apt install wget
+
+# As apt-key is deprecated we will use the following method to add gpg or asc keys
+# 1. Create a directory to store keys
+KEYRING_DIR=/etc/apt/keyrings
+sudo mkdir -p $KEYRING_DIR
+echo "deb [signed-by=$KEYRING_DIR/apt-key.asc] https://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+sudo wget -P $KEYRING_DIR https://packages.cloud.google.com/apt/doc/apt-key.gpg
 
 
 ## 1 Install Fuse
-export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
-echo "deb https://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
-sudo curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg -O --output-dir /etc/apt/trusted.gpg.d/
-sudo apt-get update && sudo apt-get install fuse gcsfuse -y
+sudo apt-get install fuse gcsfuse -y
 gcsfuse -v
+
+
+# Perform a gcloud login in order to mount the GCS bucket 
+gcloud auth login --no-launch-browser
+# gcloud auth application-default login --no-launch-browser
 
 
 mkdir "$HOME/gcs-clouddisk"
