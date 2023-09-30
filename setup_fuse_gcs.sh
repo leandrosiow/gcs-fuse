@@ -27,7 +27,7 @@ sudo apt update && sudo apt install wget
 export KEYRING_DIR=/etc/apt/keyrings
 sudo mkdir -p $KEYRING_DIR
 echo "deb [signed-by=$KEYRING_DIR/apt-key.asc] https://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
-sudo wget -O apt-key.asc -P $KEYRING_DIR https://packages.cloud.google.com/apt/doc/apt-key.gpg 
+sudo wget -O $KEYRING_DIR/apt-key.asc https://packages.cloud.google.com/apt/doc/apt-key.gpg 
 
 
 ## 1 Install Fuse
