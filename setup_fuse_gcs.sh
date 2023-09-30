@@ -9,7 +9,7 @@ echo "What is your GCS bucket name?"
 # Read input (GCS bucket name) and assigned it to a variable
 read GCS_BUCKET_NAME
 
-if [ -z "$GCS_BUCKET_NAME" ]
+if [[ -z "$GCS_BUCKET_NAME" ]]
 then
       echo "Setting disk to default bucket name $GCS_BUCKET_NAME"
       GCS_BUCKET_NAME=gcs-clouddisk
