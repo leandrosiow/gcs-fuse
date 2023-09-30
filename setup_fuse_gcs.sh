@@ -36,11 +36,11 @@ gcsfuse -v
 
 
 # Perform a gcloud login in order to mount the GCS bucket 
-gcloud auth login --no-launch-browser
+gcloud auth application-default login
 # gcloud auth application-default login --no-launch-browser
 
 
 mkdir "$HOME/gcs-clouddisk"
-gcsfuse $GCS_BUCKET_NAME "$HOME/gcs-clouddisk"
+gcsfuse -file-mode=777 -dir-mode=777 $GCS_BUCKET_NAME "$HOME/gcs-clouddisk"
 cd $HOME/gcs-clouddisk
 pwd
