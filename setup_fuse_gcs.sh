@@ -12,9 +12,7 @@ read GCS_BUCKET_NAME
 if [[ -z "$GCS_BUCKET_NAME" ]]
 then
       echo "Setting disk to default bucket name $GCS_BUCKET_NAME"
-      GCS_BUCKET_NAME=gcs-clouddisk
-else
-     
+      GCS_BUCKET_NAME=gcs-clouddisk     
 fi
 
 
