@@ -24,7 +24,7 @@ sudo apt update && sudo apt install wget
 
 # As apt-key is deprecated we will use the following method to add gpg or asc keys
 # 1. Create a directory to store keys
-KEYRING_DIR=/etc/apt/keyrings
+export KEYRING_DIR=/etc/apt/keyrings
 sudo mkdir -p $KEYRING_DIR
 echo "deb [signed-by=$KEYRING_DIR/apt-key.asc] https://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
 sudo wget -O apt-key.asc -P $KEYRING_DIR https://packages.cloud.google.com/apt/doc/apt-key.gpg 
