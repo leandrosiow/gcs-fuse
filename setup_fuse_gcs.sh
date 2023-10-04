@@ -5,7 +5,7 @@ set -e
 
 
 # Read input (GCS bucket name) and assigned it to a variable
-read -p "What is your GCS bucket name?" GCS_BUCKET_NAME
+read -p "What is your GCS bucket name? " GCS_BUCKET_NAME
 
 if [[ -z "$GCS_BUCKET_NAME" ]]
 then
