@@ -27,7 +27,8 @@ sudo apt update
 export KEYRING_DIR=/etc/apt/keyrings
 export URL=https://packages.cloud.google.com/apt/doc/apt-key.gpg
 sudo mkdir -p $KEYRING_DIR
-sudo curl -O $URL >> $KEYRING_DIR/apt-key.asc 
+sudo curl $URL | sudo tee $KEYRING_DIR/apt-key.asc > /dev/null
+
 echo "deb [signed-by=$KEYRING_DIR/apt-key.asc] https://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
 
 
