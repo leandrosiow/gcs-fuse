@@ -10,6 +10,7 @@ read -p "What is your GCS bucket name? " GCS_BUCKET_NAME
 if [[ -z "$GCS_BUCKET_NAME" ]]
 then
       GCS_BUCKET_NAME=gcs-clouddisk
+      
       echo "Setting disk to default bucket name $GCS_BUCKET_NAME"
 fi
 
@@ -45,3 +46,6 @@ mkdir "$HOME/gcs-clouddisk"
 gcsfuse -file-mode=777 -dir-mode=777 $GCS_BUCKET_NAME "$HOME/gcs-clouddisk"
 cd $HOME/gcs-clouddisk
 pwd
+
+printf "Configure GCS bucket to auto mount on reboot..."
+sudo echo "gcs-clouddisk $HOME/gcs-clouddisk rw,x-systemd.requires=network-online.target,user" | sudo tee -a /etc/fstab
