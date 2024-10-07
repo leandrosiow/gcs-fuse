@@ -19,7 +19,7 @@ fi
 export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
 
 ## Update install wget 
-sudo apt update
+sudo apt update && sudo apt install wget
 
 # As apt-key is deprecated we will use the following method to add gpg or asc keys
 # 1. Create a directory to store keys
