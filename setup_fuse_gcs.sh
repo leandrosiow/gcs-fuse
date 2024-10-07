@@ -48,7 +48,7 @@ gcsfuse -v
 gcloud auth application-default login
 # gcloud auth application-default login --no-launch-browser
 
-if [[ ! -d $HOME/gcs-clouddisk" ]]
+if [[ ! -d "$HOME/gcs-clouddisk" ]]
 then
       mkdir "$HOME/gcs-clouddisk"
       gcsfuse -file-mode=777 -dir-mode=777 $GCS_BUCKET_NAME "$HOME/gcs-clouddisk"
