@@ -26,7 +26,7 @@ sudo apt update && sudo apt install wget
 export KEYRING_DIR=/etc/apt/keyrings
 export URL=https://packages.cloud.google.com/apt/doc/apt-key.gpg
 
-if [[ -d $KEYRING_DIR ]]
+if [[ ! -d $KEYRING_DIR ]]
 then
       sudo mkdir -p $KEYRING_DIR
       sudo curl $URL | sudo tee $KEYRING_DIR/apt-key.asc > /dev/null
@@ -48,11 +48,14 @@ gcsfuse -v
 gcloud auth application-default login
 # gcloud auth application-default login --no-launch-browser
 
-
-mkdir "$HOME/gcs-clouddisk"
-gcsfuse -file-mode=777 -dir-mode=777 $GCS_BUCKET_NAME "$HOME/gcs-clouddisk"
-cd $HOME/gcs-clouddisk
-pwd
+if [[ ! -d $HOME/gcs-clouddisk" ]]
+then
+      mkdir "$HOME/gcs-clouddisk"
+      gcsfuse -file-mode=777 -dir-mode=777 $GCS_BUCKET_NAME "$HOME/gcs-clouddisk"
+      cd $HOME/gcs-clouddisk
+      pwd
+      
+fi
 
 printf "Configure GCS bucket to auto mount on reboot..."
 sudo echo "gcs-clouddisk $HOME/gcs-clouddisk rw,x-systemd.requires=network-online.target,user" | sudo tee -a /etc/fstab
