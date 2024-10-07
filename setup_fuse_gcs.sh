@@ -11,7 +11,7 @@ if [[ -z "$GCS_BUCKET_NAME" ]]
 then
       GCS_BUCKET_NAME=gcs-clouddisk
       
-      echo "Setting disk to default bucket name $GCS_BUCKET_NAME"
+      printf "Setting disk to default bucket name $GCS_BUCKET_NAME\n"
 fi
 
 
